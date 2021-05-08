@@ -80,7 +80,7 @@ def checkUpdate():
         if version != VERSION:
             print(BLUE+'['+GREEN+'+'+BLUE+'] Update available...'+BLINK+GREEN+version+' ['+release_name+']'+RESET)
     except Exception as e:
-        logging.error(RED + 'failed to get update info')
+        logging.warning(RED + 'failed to get update info')
         logging.debug(e, exc_info=True)
 
 def injectHeaders(oreq_header, url, post_body_len, path):
@@ -290,10 +290,10 @@ def runServer():
         logging.info('HTTP server is running as reverse proxy')
         httpd.serve_forever()
     except KeyboardInterrupt:
-        logging.info('Exiting...')
+        logging.info('\nExiting...')
         logging.debug('ctrl + c pressed')
         httpd.server_close()
-        time.sleep(0.8)
+        time.sleep(1)
         print(CLEAR)
         exit(0)
     except Exception as e:
