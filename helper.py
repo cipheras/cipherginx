@@ -25,7 +25,7 @@ CLEAR     = "\033[2J\033[H"
 def cwin():
     try:
         p.Popen('',shell=True)
-        time.sleep(0.01)
+        time.sleep(0.02)
         print(CLEAR)
     except Exception as e:
         print(e)
