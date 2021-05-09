@@ -67,10 +67,9 @@ variable|use
 `isSSL`    | {http or https}
 `server`   | {your domain}
 `port`     | {port to run on}
-<br>
 
 **Phishing configuration:**
-&emsp;list|&emsp;&emsp;&emsp;&emsp;use
+list|use
 -|-
 `inject_domain` |&emsp; [domain to be replaced, domain to be replaced with] 
 `req_headers`   |&emsp; [path, headers in dict format]
