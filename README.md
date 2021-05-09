@@ -59,23 +59,27 @@ Each sublist acts as task. For each replacement you have to add one sublist.
 `path` can be just some part of the URL where the task is to be executed.
 <br>
 Use `'' (blank single quotes)` if you want to apply that replacement on all the URLs.
-<br><br>
-
-**Basic configuration:**
-- `hostname = {target website}`
-- `isSSL    = {http or https}`
-- `server   = {your domain}`
-- `port     = {port to run on}`
 <br>
 
-**Phishing configuration**
-- `inject_domain` &nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [domain to be replaced, domain to be replaced with] 
-- `req_headers`   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, headers in dict format]
-- `resp_headers`  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, headers in dict format]
-- `req_body`      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, string to be replaced, string to be replaced with]
-- `resp_body`     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, string to be replaced, string to be replaced with]
-- `block_paths`   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [paths]
-- `get_cookie`    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [cookie names]
+**Basic configuration:**
+variable|use
+-|-
+`hostname` | {target website}
+`isSSL`    | {http or https}
+`server`   | {your domain}
+`port`     | {port to run on}
+<br>
+
+**Phishing configuration:**
+&emsp;list|&emsp;&emsp;&emsp;&emsp;use
+-|-
+`inject_domain` |&emsp; [domain to be replaced, domain to be replaced with] 
+`req_headers`   |&emsp; [path, headers in dict format]
+`resp_headers`  |&emsp; [path, headers in dict format]
+`req_body`      |&emsp; [path, string to be replaced, string to be replaced with]
+`resp_body`     |&emsp; [path, string to be replaced, string to be replaced with]
+`block_paths`   |&emsp; [paths]
+`get_cookie`    |&emsp; [cookie names]
 
 ## Disclaimer
 *This tool is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*
