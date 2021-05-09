@@ -3,7 +3,6 @@
 
 ![Lines of code](https://img.shields.io/tokei/lines/github/cipheras/cipherginx?style=flat-square)
 &nbsp;&nbsp;&nbsp;&nbsp;![Python version](https://img.shields.io/badge/python-3.X-green?style=flat-square&labelColor=grey&color=darkgreen)
-&nbsp;&nbsp;&nbsp;&nbsp;![GitHub All Releases](https://img.shields.io/github/downloads/cipheras/cipherginx/total?style=flat-square)
 &nbsp;&nbsp;&nbsp;&nbsp;![Code Quality](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=code%20quality&query=codequality&style=flat-square&labelColor=grey&color=yellowgreen)
 &nbsp;&nbsp;&nbsp;&nbsp;![platform](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=platform&query=platform&style=flat-square&labelColor=grey&color=purple)
 
