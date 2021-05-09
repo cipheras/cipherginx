@@ -10,15 +10,16 @@
 ![example](../assets/screen.gif?raw=true)
 
 ## Description
-This tool is used for advanced phishing attacks using reverse proxy. It can also bypass **2FA** or **2-factor authorization**. Generate tokens will be written in the file `token.txt` on successful phish. Attack can use this tool to phish any website by creating a suitable configuration. Author has already tested it with **gmail, outlook & icloud**, however no orginal config has been uploaded here for security purposes. This tool is only to be used as a POC to understand advanced phishing and for **Red Teaming** purposes.
+This tool is used for advanced phishing attacks using reverse proxy. It can also bypass **2FA** or **2-factor authorization**. Captured tokens will be written in the file `token.txt` on successful phish. Attack can use this tool to phish any website by creating a suitable configuration. Author has already tested it with **gmail, outlook & icloud**, however no orginal config has been uploaded here for security purposes. This tool is only to be used as a POC to understand advanced phishing and for **Red Teaming** purposes.
 <br>
-####Advantages over other similar tools:
-- This tool lets you modify any thing in the website to be used for phishing. 
+
+#### Advantages over other similar tools:
+- This tool lets you modify anything in the website to be used for phishing. 
 - Other tools have restriction like you can not replace **response headers or request body**, or you need to use third party tools along with them. 
 - You can also block certain paths. Tool returns `[200 ok]` response to those paths without any body, to avoid any suspicion.
 - Supports **regex**.
 - Comparably smaller config files because of path based modification and fast to make. 
-- You do not have to enter whole URL path in the `config.py` files. You can just enter parts for URL path and tool will automatically match it.
+- You do not have to enter whole URL path in the `config.py` files. You can just enter part of URL path and tool will automatically match it.
 
 
 ## Options
@@ -50,7 +51,7 @@ To install python in windows get it from [here](https://www.python.org/downloads
 - Given cert can be used but it is **unsigned**.
 - Put your `config.py` files in config folder.
 
-## Config structure
+## Config Structure
 Config files are structured as sub lists inside a list with two/three items, where first item is the `path` on which that particular task is to be executed.
 <br>
 Each sublist acts as task. For each replacement you have to add one sublist.
@@ -58,20 +59,23 @@ Each sublist acts as task. For each replacement you have to add one sublist.
 `path` can be just some part of the URL where the task is to be executed.
 <br>
 Use `'' (blank single quotes)` if you want to apply that replacement on all the URLs.
+<br><br>
 
 **Basic configuration:**
-`hostname = {target website}`
-`isSSL = {http or https}`
-`server = {your domain}`
-`port = {port to run on}`
+- `hostname = {target website}`
+- `isSSL    = {http or https}`
+- `server   = {your domain}`
+- `port     = {port to run on}`
+<br>
+
 **Phishing configuration**
-`inject_domain` : [domain to be replaced, domain to be replaced with] 
-`req_headers`   : [path, headers in dict format]
-`resp_headers`  : [path, headers in dict format]
-`req_body`      : [path, string to be replaced, string to be replaced with]
-`resp_body`     : [path, string to be replaced, string to be replaced with]
-`block_paths`   : [paths]
-`get_cookie`    : [cookie names]
+- `inject_domain` &nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [domain to be replaced, domain to be replaced with] 
+- `req_headers`   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, headers in dict format]
+- `resp_headers`  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, headers in dict format]
+- `req_body`      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, string to be replaced, string to be replaced with]
+- `resp_body`     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [path, string to be replaced, string to be replaced with]
+- `block_paths`   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [paths]
+- `get_cookie`    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; :&nbsp;&nbsp;&nbsp;&nbsp; [cookie names]
 
 ## Disclaimer
 *This tool is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*
