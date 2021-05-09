@@ -12,7 +12,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # from urllib.parse import unquote, quote_plus
 
-VERSION = 'v1.0'
+VERSION = 'v1.1'
 CONFIG = ''
 LEVEL = ''
 
@@ -302,15 +302,14 @@ def runServer():
         logging.debug('check domain name and ssl cert', exc_info=True)
 
 if __name__ == '__main__':
-    # flags()
+    cwin()
+    flags()
     if LEVEL=='error':
         logging.basicConfig(format=PURPLE + '## %(asctime)s [%(levelname)s] - %(message)s' + RESET, level=logging.ERROR,)
     elif LEVEL=='debug':
         logging.basicConfig(format=PURPLE + '## %(asctime)s [%(levelname)s] - %(message)s' + RESET, level=logging.DEBUG,)
     else:
         logging.basicConfig(format=PURPLE + '## %(asctime)s [%(levelname)s] - %(message)s' + RESET, level=logging.INFO,)
-    flags()
-    cwin()
     banner()
     checkUpdate()
     try:

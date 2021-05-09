@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 
 import subprocess as p
-import time, logging
+import time
 
 RESET     = "\033[0m"
 RED       = "\033[31m"
@@ -28,6 +28,4 @@ def cwin():
         time.sleep(0.01)
         print(CLEAR)
     except Exception as e:
-        logging.error(RED+str(e))
-        logging.debug(e,exc_info=True)
-        
+        print(e)
