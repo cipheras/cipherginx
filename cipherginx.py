@@ -12,7 +12,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # from urllib.parse import unquote, quote_plus
 
-VERSION = 'v1.2'
+VERSION = 'v1.3'
 CONFIG = ''
 LEVEL = ''
 
@@ -34,7 +34,7 @@ def banner():
     print(GREEN + bnr + RESET)
     print(CYAN + '\tCreated by: ' + GREEN + by + RESET)
     print(CYAN + '\tVersion:  -~{ ' + RED + VERSION +  CYAN + ' }~-\n' + RESET)
-    time.sleep(0.5)
+    time.sleep(1)
 
 def flags():
     description = BLUE+'['+GREEN+'+'+BLUE+'] Setup host, port, server & other details in config & run '+GREEN+'"sudo cipherginx.py config_name.py"'+BLUE+' to start the server' + RESET
@@ -75,7 +75,7 @@ def flags():
 def checkUpdate():
     try:
         logging.info('checking for updates')
-        resp = requests.get('https://api.github.com/repos/cipheras/cipherginx/releases').json
+        resp = requests.get('https://api.github.com/repos/cipheras/cipherginx/releases').json()
         version = resp[0]['tag_name']
         release_name = resp[0]['name']
         if version != VERSION:
