@@ -2,80 +2,79 @@
 #### Advanced phishing tool used for session & credential grabbing and bypassing 2FA using man-in-the-middle attack with standalone reverse proxy server. 
 
 ![Lines of code](https://img.shields.io/tokei/lines/github/cipheras/cipherginx?style=flat-square)
-&nbsp;&nbsp;&nbsp;&nbsp;![GitHub Pipenv locked Python version](https://img.shields.io/github/pipenv/locked/python-version/cipheras/cipherginx?style=flat-square)
+&nbsp;&nbsp;&nbsp;&nbsp;![Python version](https://img.shields.io/badge/python-3.X-green?style=flat-square&labelColor=grey&color=darkgreen)
 &nbsp;&nbsp;&nbsp;&nbsp;![GitHub All Releases](https://img.shields.io/github/downloads/cipheras/cipherginx/total?style=flat-square)
-
-![Code Quality](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=code%20quality&query=codequality&style=flat-square&labelColor=grey&color=yellowgreen)
-&nbsp;&nbsp;&nbsp;&nbsp;![build](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=build&query=build&style=flat-square&labelColor=grey&color=darkgreen)
+&nbsp;&nbsp;&nbsp;&nbsp;![Code Quality](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=code%20quality&query=codequality&style=flat-square&labelColor=grey&color=yellowgreen)
 &nbsp;&nbsp;&nbsp;&nbsp;![platform](https://img.shields.io/badge/dynamic/json?url=https://jsonkeeper.com/b/KNO7&label=platform&query=platform&style=flat-square&labelColor=grey&color=purple)
 
 ![example](../assets/screen.gif?raw=true)
 
+## Description
+This tool is used for advanced phishing attacks using reverse proxy. It can also bypass **2FA** or **2-factor authorization**. Generate tokens will be written in the file `token.txt` on successful phish. Attack can use this tool to phish any website by creating a suitable configuration. Author has already tested it with **gmail, outlook & icloud**, however no orginal config has been uploaded here for security purposes. This tool is only to be used as a POC to understand advanced phishing and for **Red Teaming** purposes.
+<br>
+####Advantages over other similar tools:
+- This tool lets you modify any thing in the website to be used for phishing. 
+- Other tools have restriction like you can not replace **response headers or request body**, or you need to use third party tools along with them. 
+- You can also block certain paths. Tool returns `[200 ok]` response to those paths without any body, to avoid any suspicion.
+- Supports **regex**.
+- Comparably smaller config files because of path based modification and fast to make. 
+- You do not have to enter whole URL path in the `config.py` files. You can just enter parts for URL path and tool will automatically match it.
+
+
 ## Options
-
-## Installation
-You can either use a precompiled binary package for your architecture or you can compile **cipherginx** from source.
-<br>Grab the package you want from here:
-
-Windows | Linux
---------|-------
-[win-x64](https://github.com/cipheras/cipherginx/releases/download/v1.5.3/cipherginx-win-x64.zip) | [linux-x64](https://github.com/cipheras/cipherginx/releases/download/v1.5.3/cipherginx-linux-x64)
-
-For other versions or releases go to release page.
-
-***NOTE:** In windows, installtion is not needed. You can directly execute the **exe** file.*
-*In cmd write `cipherginx.exe -h`*
-
-### Installing precompiled binary in Linux
-* In order to install precompiled binary, make sure you have installed `make`.
-* Download **Makefile** from [here](https://github.com/cipheras/cipherginx/releases/download/v1.5.3/Makefile) and keep it and your binary in the same directory.
-* Now open terminal in the same dir and run commands:
-
-To install:
 ```
-sudo make install
-```
-To uninstall:
-```
-sudo make uninstall
-```
+cipherginx.py [-h] [-v] [-l {info,debug,error}] [config]
 
+positional arguments:
+  config                select config to run
 
-### Installing from source in Linux
-In order to compile from source, make sure you have installed **GO** of version at least **1.15.0** (get it from [here](https://golang.org/doc/install)).
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show tool version
+  -l {info,debug,error}, --level {info,debug,error}
+                        logging level
 
-To install:
+Example:
+cipherginx.py myconfig -l debug
+or
+cipherginx.py -l debug myconfig
 ```
-sudo make
-```
-To uninstall:
-```
-sudo make uninstall
-```
-To build:
-```
-make build
-```
-
 
 ## Usage
-For help type `cipherginx -h`.
-```
--c  For your own certificates located in cert folder
--d  Subdomain (optional)
--m  Manual Tunnel
--p  Port Number (optional) (default 8080)
+*In order to use this tool `python3` is required.* 
+To install python in windows get it from [here](https://www.python.org/downloads/).
+<br>
+- For help type `python cipherginx -h`.
+- If you are using port 443(for ssl/tls), run tool with `sudo`.
+- Use your own cert for **ssl/tls** & put it in `cert` folder with name `server.pem`.
+- Given cert can be used but it is **unsigned**.
+- Put your `config.py` files in config folder.
 
-```
-If you want to use your own **ssl/tls** certificates put them in folder **cert** and choose option `-c`.
-<br> If you want to use your own **SSH keys**, put your **ssh key** in ssh-key folder.
+## Config structure
+Config files are structured as sub lists inside a list with two/three items, where first item is the `path` on which that particular task is to be executed.
+<br>
+Each sublist acts as task. For each replacement you have to add one sublist.
+<br>
+`path` can be just some part of the URL where the task is to be executed.
+<br>
+Use `'' (blank single quotes)` if you want to apply that replacement on all the URLs.
 
-## To Do
-- [x] cmd color support
-- [ ] More templates  
+**Basic configuration:**
+`hostname = {target website}`
+`isSSL = {http or https}`
+`server = {your domain}`
+`port = {port to run on}`
+**Phishing configuration**
+`inject_domain` : [domain to be replaced, domain to be replaced with] 
+`req_headers`   : [path, headers in dict format]
+`resp_headers`  : [path, headers in dict format]
+`req_body`      : [path, string to be replaced, string to be replaced with]
+`resp_body`     : [path, string to be replaced, string to be replaced with]
+`block_paths`   : [paths]
+`get_cookie`    : [cookie names]
 
 ## Disclaimer
-*This tools is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*
+*This tool is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*
 
 ## License
 **cipherginx** is made by **@cipheras** and is released under the terms of the &nbsp;![GitHub License](https://img.shields.io/github/license/cipheras/cipherginx?color=darkgreen)
