@@ -1,5 +1,8 @@
 #! /usr/bin/env python3
 
+import subprocess as p
+import time, logging
+
 RESET     = "\033[0m"
 RED       = "\033[31m"
 GREEN     = "\033[32m"
@@ -18,3 +21,13 @@ BOLD      = "\033[1m"
 UNDERLINE = "\033[4m"
 BLINK     = "\033[5m"
 CLEAR     = "\033[2J\033[H"
+
+def cwin():
+    try:
+        p.Popen('',shell=True)
+        time.sleep(0.01)
+        print(CLEAR)
+    except Exception as e:
+        logging.error(RED+str(e))
+        logging.debug(e,exc_info=True)
+        

@@ -2,6 +2,7 @@
  
 import requests, json, time, re
 from datetime import datetime
+from sys import exit
 import argparse, logging, ssl
 from http.cookies import SimpleCookie
 from helper import *
@@ -298,16 +299,18 @@ def runServer():
         exit(0)
     except Exception as e:
         logging.error(RED + str(e))
-        logging.debug(e, exc_info=True)
+        logging.debug('check domain name and ssl cert', exc_info=True)
 
 if __name__ == '__main__':
-    flags()
+    # flags()
     if LEVEL=='error':
         logging.basicConfig(format=PURPLE + '## %(asctime)s [%(levelname)s] - %(message)s' + RESET, level=logging.ERROR,)
     elif LEVEL=='debug':
         logging.basicConfig(format=PURPLE + '## %(asctime)s [%(levelname)s] - %(message)s' + RESET, level=logging.DEBUG,)
     else:
         logging.basicConfig(format=PURPLE + '## %(asctime)s [%(levelname)s] - %(message)s' + RESET, level=logging.INFO,)
+    flags()
+    cwin()
     banner()
     checkUpdate()
     try:
