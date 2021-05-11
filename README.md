@@ -9,7 +9,7 @@
 ![example](../asset/screen.png?raw=true)
 
 ## Description
-This tool is used for advanced phishing attacks using reverse proxy. It can also bypass **2FA** or **2-factor authorization**. Captured tokens will be written in the file `token.txt` on successful phish. Attack can use this tool to phish any website by creating a suitable configuration. Author has already tested it with **gmail, outlook & icloud**, however no orginal config has been uploaded here for security purposes. This tool is only to be used as a POC to understand advanced phishing and for **Red Teaming** purposes.
+This tool is used for advanced phishing attacks using reverse proxy. It can also bypass **2FA** or **2-factor authorization**. Captured tokens will be written in the file `token.txt` on successful phish. Attacker can use this tool to phish victim with any website by creating a suitable configuration and using a signed **SSL\TLS certificate**(victim will see `https` connection). Author has already tested it with **gmail, outlook & icloud**, however no orginal config has been uploaded here for security purposes. This tool is only to be used as a POC to understand advanced phishing and for **Red Teaming** purposes.
 <br>
 
 #### Advantages over other similar tools:
@@ -17,6 +17,8 @@ This tool is used for advanced phishing attacks using reverse proxy. It can also
 - Other tools have restriction like you can not replace **response headers or request body**, or you need to use third party tools along with them. 
 - You can also block certain paths. Tool returns `[200 ok]` response to those paths without any body, to avoid any suspicion.
 - Supports **regex**.
+- Supports TCP connection over `SSL/TLS`. Use your own signed certificates. 
+- Supports http1, http1.1 & http2 connections.
 - Comparably smaller config files because of path based modification and fast to make. 
 - You do not have to enter whole URL path in the `config.py` files. You can just enter part of URL path and tool will automatically match it.
 
