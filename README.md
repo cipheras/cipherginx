@@ -82,12 +82,12 @@ list|use
 `get_cookie`    |&emsp; [cookie names]
 
 ## Disclaimer
-*This tool is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*
+*This tool is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*<br>
+*Configs given as an example here are anti script-kiddies.*
 
 ## License
 **cipherginx** is made by **@cipheras** and is released under the terms of the &nbsp;![GitHub License](https://img.shields.io/github/license/cipheras/cipherginx?color=darkgreen)
 
 ## Contact &nbsp; [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fcipheras%2Fcipherginx&label=Tweet)](https://twitter.com/intent/tweet?text=Hi:&url=https%3A%2F%2Fgithub.com%2Fcipheras%2Fcipherginx)
 > Feel free to submit a bug, add features or issue a pull request.
-
 
