@@ -1,0 +1,4 @@
+v1.4
+- implemented google anti-botguard
+- resolved some timestamp related issues in cookies
+- saving all tokens generated instead of recent one in token.txt file
