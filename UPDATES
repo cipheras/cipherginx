@@ -1,3 +1,6 @@
+v1.5
+- resolved anti-bot implementation related issues
+
 v1.4
 - implemented google anti-botguard
 - resolved some timestamp related issues in cookies
