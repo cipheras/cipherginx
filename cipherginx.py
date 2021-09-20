@@ -14,7 +14,7 @@ from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 # from urllib.parse import unquote, quote_plus
 
-VERSION = 'v1.4'
+VERSION = 'v1.5'
 CONFIG = ''
 LEVEL = ''
 
