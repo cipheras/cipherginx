@@ -63,23 +63,25 @@ Use `'' (blank single quotes)` if you want to apply that replacement on all the 
 <br>
 
 **Basic configuration:**
-variable | use
-- | -
-`hostname` | {target website}
-`isSSL`    | {http or https}
-`server`   | {your domain}
-`port`     | {port to run on}
+
+| variable | use |
+|--- | --- |
+|`hostname` | {target website} |
+|`isSSL`    | {http or https} |
+|`server`   | {your domain} |
+|`port`     | {port to run on} |
 
 **Phishing configuration:**
-list | use
-- | -
-`inject_domain` |&emsp; [domain to be replaced, domain to be replaced with] 
-`req_headers`   |&emsp; [path, headers in dict format]
-`resp_headers`  |&emsp; [path, headers in dict format]
-`req_body`      |&emsp; [path, string to be replaced, string to be replaced with]
-`resp_body`     |&emsp; [path, string to be replaced, string to be replaced with]
-`block_paths`   |&emsp; [paths]
-`get_cookie`    |&emsp; [cookie names]
+
+| list | use |
+| --- | --- |
+|`inject_domain` |&emsp; [domain to be replaced, domain to be replaced with] |
+|`req_headers`   |&emsp; [path, headers in dict format] |
+|`resp_headers`  |&emsp; [path, headers in dict format] |
+|`req_body`      |&emsp; [path, string to be replaced, string to be replaced with] |
+|`resp_body`     |&emsp; [path, string to be replaced, string to be replaced with] |
+|`block_paths`   |&emsp; [paths] |
+|`get_cookie`    |&emsp; [cookie names] |
 
 ## Disclaimer
 *This tool is merely a POC of what attackers can do. Author is not responsible for any use of this tool in any nefarious activity.*<br>
