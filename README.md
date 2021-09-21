@@ -63,16 +63,16 @@ Use `'' (blank single quotes)` if you want to apply that replacement on all the 
 <br>
 
 **Basic configuration:**
-variable|use
----|---
+variable | use
+- | -
 `hostname` | {target website}
 `isSSL`    | {http or https}
 `server`   | {your domain}
 `port`     | {port to run on}
 
 **Phishing configuration:**
-list|use
----|---
+list | use
+- | -
 `inject_domain` |&emsp; [domain to be replaced, domain to be replaced with] 
 `req_headers`   |&emsp; [path, headers in dict format]
 `resp_headers`  |&emsp; [path, headers in dict format]
