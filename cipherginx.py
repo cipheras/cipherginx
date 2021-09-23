@@ -140,7 +140,7 @@ def parseCookie(cookie):
     cl = []
     for k,v in SimpleCookie(cookie).items():
         cook = {}
-        if k in get_cookie: 
+        if k in get_cookie or k.lower() in get_cookie: 
             cook['name'] = k
             cook['value'] = v.value
             cook['domain'] = v['domain']
@@ -286,7 +286,7 @@ class ProxyHTTPRequestHandler(BaseHTTPRequestHandler):
                     v = v.replace(h[0],h[1]) 
                 print(CYAN, k, ':', v, RESET)
                 self.send_header(k,v)
-                if k=='Set-Cookie':
+                if k.lower()=='set-cookie':
                     parseCookie(v)
                
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
