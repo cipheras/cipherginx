@@ -39,7 +39,7 @@ def banner():
     time.sleep(1)
 
 def flags():
-    description = BLUE+'['+GREEN+'+'+BLUE+'] Setup host, port, server & other details in config & run '+GREEN+'"sudo cipherginx.py config_name.py"'+BLUE+' to start the server' + RESET
+    description = BLUE+'['+GREEN+'+'+BLUE+'] Setup host, port, server & other details in config & run '+GREEN+'"sudo cipherginx.py config_name"'+BLUE+' to start the server' + RESET
     epilog = BLUE+'['+GREEN+'+'+BLUE+'] To use your own cert put it in the cert folder with name '+GREEN+'"server.pem"'+RESET
     parser = argparse.ArgumentParser(description=description, epilog=epilog)
     parser.add_argument('config', nargs='?' ,  help='select config to run')
